@@ -1,0 +1,46 @@
+# GraphQL schema example
+
+interface Commitment {
+  id: ID!
+  name: String!
+  deadline: String!
+  status: Boolean! 
+}
+
+type Bill implements Commitment {
+  id: ID!
+  name: String!
+  deadline: String!
+  status: Boolean!
+  amount: Float!
+}
+
+type Query {
+  bills: [Bill!]!
+  bill(id: ID!): Bill!
+}
+
+type Mutation {
+  createBill(input: CreateBillInput!): Bill!
+  updateBill(id: ID!, input: UpdateBillInput!): Bill!
+  deleteBill(id: ID!): DeleteBillResponse!
+
+}
+
+input CreateBillInput {
+  name: String!
+  deadline: String!
+  status: Boolean!
+  amount: Float!
+}
+
+input UpdateBillInput {
+  name: String
+  deadline: String
+  status: Boolean
+  amount: Float
+}
+
+type DeleteBillResponse {
+  deletedBillId: String!
+}
