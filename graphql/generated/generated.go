@@ -4,7 +4,7 @@ package generated
 
 import (
 	"bytes"
-	"commitado/graph/model"
+	"commitado/graphql/model"
 	"context"
 	"errors"
 	"fmt"

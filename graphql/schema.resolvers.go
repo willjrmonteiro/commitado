@@ -1,12 +1,12 @@
-package graph
+package graphql
 
 // This file will be automatically regenerated based on the schema, any resolver implementations
 // will be copied through when generating and any unknown code will be moved to the end.
 
 import (
 	"commitado/database"
-	"commitado/graph/generated"
-	"commitado/graph/model"
+	"commitado/graphql/generated"
+	"commitado/graphql/model"
 	"context"
 )
 
