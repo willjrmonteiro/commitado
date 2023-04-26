@@ -11,7 +11,7 @@ type Commitment interface {
 }
 
 type Bill struct {
-	ID       string  `json:"id"`
+	ID       string  `bson:"_id,omitempty"`
 	Name     string  `json:"name"`
 	Deadline string  `json:"deadline"`
 	Status   bool    `json:"status"`
