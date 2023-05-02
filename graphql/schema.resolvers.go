@@ -10,6 +10,31 @@ import (
 	"context"
 )
 
+// CreateBill is the resolver for the createBill field.
+func (r *mutationResolver) CreateBill(ctx context.Context, input model.CreateBillInput) (*model.Bill, error) {
+	return db.CreateBill(input), nil
+}
+
+// UpdateBill is the resolver for the updateBill field.
+func (r *mutationResolver) UpdateBill(ctx context.Context, id string, input model.UpdateBillInput) (*model.Bill, error) {
+	return db.UpdateBill(id, input), nil
+}
+
+// DeleteBill is the resolver for the deleteBill field.
+func (r *mutationResolver) DeleteBill(ctx context.Context, id string) (*model.DeleteBillResponse, error) {
+	return db.DeleteBill(id), nil
+}
+
+// Bills is the resolver for the bills field.
+func (r *queryResolver) Bills(ctx context.Context) ([]*model.Bill, error) {
+	return db.GetBills(), nil
+}
+
+// Bill is the resolver for the bill field.
+func (r *queryResolver) Bill(ctx context.Context, id string) (*model.Bill, error) {
+	return db.GetBill(id), nil
+}
+
 // Mutation returns generated.MutationResolver implementation.
 func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
 
@@ -26,23 +51,3 @@ type queryResolver struct{ *Resolver }
 //     it when you're done.
 //   - You have helper methods in this file. Move them out to keep these resolver files clean.
 var db = database.Connect()
-
-func (r *mutationResolver) CreateBill(ctx context.Context, input model.CreateBillInput) (*model.Bill, error) {
-	return db.CreateBill(input), nil
-}
-
-func (r *mutationResolver) UpdateBill(ctx context.Context, id string, input model.UpdateBillInput) (*model.Bill, error) {
-	return db.UpdateBill(id, input), nil
-}
-
-func (r *mutationResolver) DeleteBill(ctx context.Context, id string) (*model.DeleteBillResponse, error) {
-	return db.DeleteBill(id), nil
-}
-
-func (r *queryResolver) Bills(ctx context.Context) ([]*model.Bill, error) {
-	return db.GetBills(), nil
-}
-
-func (r *queryResolver) Bill(ctx context.Context, id string) (*model.Bill, error) {
-	return db.GetBill(id), nil
-}

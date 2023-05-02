@@ -4,14 +4,14 @@ interface Commitment {
   id: ID!
   name: String!
   deadline: String!
-  status: Boolean! 
+  status: String! 
 }
 
 type Bill implements Commitment {
   id: ID!
   name: String!
   deadline: String!
-  status: Boolean!
+  status: String!
   amount: Float!
 }
 
@@ -30,14 +30,14 @@ type Mutation {
 input CreateBillInput {
   name: String!
   deadline: String!
-  status: Boolean!
+  status: String!
   amount: Float!
 }
 
 input UpdateBillInput {
   name: String
   deadline: String
-  status: Boolean
+  status: String
   amount: Float
 }
 

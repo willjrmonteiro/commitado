@@ -266,14 +266,14 @@ interface Commitment {
   id: ID!
   name: String!
   deadline: String!
-  status: Boolean! 
+  status: String! 
 }
 
 type Bill implements Commitment {
   id: ID!
   name: String!
   deadline: String!
-  status: Boolean!
+  status: String!
   amount: Float!
 }
 
@@ -292,14 +292,14 @@ type Mutation {
 input CreateBillInput {
   name: String!
   deadline: String!
-  status: Boolean!
+  status: String!
   amount: Float!
 }
 
 input UpdateBillInput {
   name: String
   deadline: String
-  status: Boolean
+  status: String
   amount: Float
 }
 
@@ -320,7 +320,7 @@ func (ec *executionContext) field_Mutation_createBill_args(ctx context.Context, 
 	var arg0 model.CreateBillInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNCreateBillInput2commitadoᚋgraphᚋmodelᚐCreateBillInput(ctx, tmp)
+		arg0, err = ec.unmarshalNCreateBillInput2commitadoᚋgraphqlᚋmodelᚐCreateBillInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -359,7 +359,7 @@ func (ec *executionContext) field_Mutation_updateBill_args(ctx context.Context, 
 	var arg1 model.UpdateBillInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg1, err = ec.unmarshalNUpdateBillInput2commitadoᚋgraphᚋmodelᚐUpdateBillInput(ctx, tmp)
+		arg1, err = ec.unmarshalNUpdateBillInput2commitadoᚋgraphqlᚋmodelᚐUpdateBillInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -594,9 +594,9 @@ func (ec *executionContext) _Bill_status(ctx context.Context, field graphql.Coll
 		}
 		return graphql.Null
 	}
-	res := resTmp.(bool)
+	res := resTmp.(string)
 	fc.Result = res
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Bill_status(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -606,7 +606,7 @@ func (ec *executionContext) fieldContext_Bill_status(ctx context.Context, field 
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Boolean does not have child fields")
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -728,7 +728,7 @@ func (ec *executionContext) _Mutation_createBill(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.Bill)
 	fc.Result = res
-	return ec.marshalNBill2ᚖcommitadoᚋgraphᚋmodelᚐBill(ctx, field.Selections, res)
+	return ec.marshalNBill2ᚖcommitadoᚋgraphqlᚋmodelᚐBill(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_createBill(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -795,7 +795,7 @@ func (ec *executionContext) _Mutation_updateBill(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.Bill)
 	fc.Result = res
-	return ec.marshalNBill2ᚖcommitadoᚋgraphᚋmodelᚐBill(ctx, field.Selections, res)
+	return ec.marshalNBill2ᚖcommitadoᚋgraphqlᚋmodelᚐBill(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_updateBill(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -862,7 +862,7 @@ func (ec *executionContext) _Mutation_deleteBill(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.DeleteBillResponse)
 	fc.Result = res
-	return ec.marshalNDeleteBillResponse2ᚖcommitadoᚋgraphᚋmodelᚐDeleteBillResponse(ctx, field.Selections, res)
+	return ec.marshalNDeleteBillResponse2ᚖcommitadoᚋgraphqlᚋmodelᚐDeleteBillResponse(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_deleteBill(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -921,7 +921,7 @@ func (ec *executionContext) _Query_bills(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.([]*model.Bill)
 	fc.Result = res
-	return ec.marshalNBill2ᚕᚖcommitadoᚋgraphᚋmodelᚐBillᚄ(ctx, field.Selections, res)
+	return ec.marshalNBill2ᚕᚖcommitadoᚋgraphqlᚋmodelᚐBillᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_bills(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -977,7 +977,7 @@ func (ec *executionContext) _Query_bill(ctx context.Context, field graphql.Colle
 	}
 	res := resTmp.(*model.Bill)
 	fc.Result = res
-	return ec.marshalNBill2ᚖcommitadoᚋgraphᚋmodelᚐBill(ctx, field.Selections, res)
+	return ec.marshalNBill2ᚖcommitadoᚋgraphqlᚋmodelᚐBill(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_bill(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2952,7 +2952,7 @@ func (ec *executionContext) unmarshalInputCreateBillInput(ctx context.Context, o
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("status"))
-			it.Status, err = ec.unmarshalNBoolean2bool(ctx, v)
+			it.Status, err = ec.unmarshalNString2string(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -3004,7 +3004,7 @@ func (ec *executionContext) unmarshalInputUpdateBillInput(ctx context.Context, o
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("status"))
-			it.Status, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			it.Status, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -3593,11 +3593,11 @@ func (ec *executionContext) ___Type(ctx context.Context, sel ast.SelectionSet, o
 
 // region    ***************************** type.gotpl *****************************
 
-func (ec *executionContext) marshalNBill2commitadoᚋgraphᚋmodelᚐBill(ctx context.Context, sel ast.SelectionSet, v model.Bill) graphql.Marshaler {
+func (ec *executionContext) marshalNBill2commitadoᚋgraphqlᚋmodelᚐBill(ctx context.Context, sel ast.SelectionSet, v model.Bill) graphql.Marshaler {
 	return ec._Bill(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNBill2ᚕᚖcommitadoᚋgraphᚋmodelᚐBillᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Bill) graphql.Marshaler {
+func (ec *executionContext) marshalNBill2ᚕᚖcommitadoᚋgraphqlᚋmodelᚐBillᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Bill) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -3621,7 +3621,7 @@ func (ec *executionContext) marshalNBill2ᚕᚖcommitadoᚋgraphᚋmodelᚐBill�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNBill2ᚖcommitadoᚋgraphᚋmodelᚐBill(ctx, sel, v[i])
+			ret[i] = ec.marshalNBill2ᚖcommitadoᚋgraphqlᚋmodelᚐBill(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -3641,7 +3641,7 @@ func (ec *executionContext) marshalNBill2ᚕᚖcommitadoᚋgraphᚋmodelᚐBill�
 	return ret
 }
 
-func (ec *executionContext) marshalNBill2ᚖcommitadoᚋgraphᚋmodelᚐBill(ctx context.Context, sel ast.SelectionSet, v *model.Bill) graphql.Marshaler {
+func (ec *executionContext) marshalNBill2ᚖcommitadoᚋgraphqlᚋmodelᚐBill(ctx context.Context, sel ast.SelectionSet, v *model.Bill) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -3666,16 +3666,16 @@ func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.Se
 	return res
 }
 
-func (ec *executionContext) unmarshalNCreateBillInput2commitadoᚋgraphᚋmodelᚐCreateBillInput(ctx context.Context, v interface{}) (model.CreateBillInput, error) {
+func (ec *executionContext) unmarshalNCreateBillInput2commitadoᚋgraphqlᚋmodelᚐCreateBillInput(ctx context.Context, v interface{}) (model.CreateBillInput, error) {
 	res, err := ec.unmarshalInputCreateBillInput(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNDeleteBillResponse2commitadoᚋgraphᚋmodelᚐDeleteBillResponse(ctx context.Context, sel ast.SelectionSet, v model.DeleteBillResponse) graphql.Marshaler {
+func (ec *executionContext) marshalNDeleteBillResponse2commitadoᚋgraphqlᚋmodelᚐDeleteBillResponse(ctx context.Context, sel ast.SelectionSet, v model.DeleteBillResponse) graphql.Marshaler {
 	return ec._DeleteBillResponse(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNDeleteBillResponse2ᚖcommitadoᚋgraphᚋmodelᚐDeleteBillResponse(ctx context.Context, sel ast.SelectionSet, v *model.DeleteBillResponse) graphql.Marshaler {
+func (ec *executionContext) marshalNDeleteBillResponse2ᚖcommitadoᚋgraphqlᚋmodelᚐDeleteBillResponse(ctx context.Context, sel ast.SelectionSet, v *model.DeleteBillResponse) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
@@ -3730,7 +3730,7 @@ func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.S
 	return res
 }
 
-func (ec *executionContext) unmarshalNUpdateBillInput2commitadoᚋgraphᚋmodelᚐUpdateBillInput(ctx context.Context, v interface{}) (model.UpdateBillInput, error) {
+func (ec *executionContext) unmarshalNUpdateBillInput2commitadoᚋgraphqlᚋmodelᚐUpdateBillInput(ctx context.Context, v interface{}) (model.UpdateBillInput, error) {
 	res, err := ec.unmarshalInputUpdateBillInput(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }

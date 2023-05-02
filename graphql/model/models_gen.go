@@ -7,14 +7,14 @@ type Commitment interface {
 	GetID() string
 	GetName() string
 	GetDeadline() string
-	GetStatus() bool
+	GetStatus() string
 }
 
 type Bill struct {
-	ID       string  `bson:"_id,omitempty"`
+	ID       string  `_id,omitempty`
 	Name     string  `json:"name"`
 	Deadline string  `json:"deadline"`
-	Status   bool    `json:"status"`
+	Status   string  `json:"status"`
 	Amount   float64 `json:"amount"`
 }
 
@@ -22,12 +22,12 @@ func (Bill) IsCommitment()            {}
 func (this Bill) GetID() string       { return this.ID }
 func (this Bill) GetName() string     { return this.Name }
 func (this Bill) GetDeadline() string { return this.Deadline }
-func (this Bill) GetStatus() bool     { return this.Status }
+func (this Bill) GetStatus() string   { return this.Status }
 
 type CreateBillInput struct {
 	Name     string  `json:"name"`
 	Deadline string  `json:"deadline"`
-	Status   bool    `json:"status"`
+	Status   string  `json:"status"`
 	Amount   float64 `json:"amount"`
 }
 
@@ -38,6 +38,6 @@ type DeleteBillResponse struct {
 type UpdateBillInput struct {
 	Name     *string  `json:"name"`
 	Deadline *string  `json:"deadline"`
-	Status   *bool    `json:"status"`
+	Status   *string  `json:"status"`
 	Amount   *float64 `json:"amount"`
 }
